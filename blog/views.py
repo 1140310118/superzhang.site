@@ -11,6 +11,12 @@ from blog.models import BlogsPost
 def home(request):
 	return render_to_response('home.html',{})
 
+def dir(request):
+	post=BlogsPost.objects.filter(url='site-dir')[0]
+	post.body=markdown(post.body,extensions=['tables'])
+	return render_to_response('child/article.html',{'post':post})
+
+
 # 供用户查看的文章列表
 def blog(request):
 	return render_to_response('blog.html',{})
@@ -46,19 +52,6 @@ def print(request,url):
 	# https://segmentfault.com/q/1010000004606334
 	post.body=markdown(post.body,extensions=['tables'])
 	return render_to_response('child/print.html',{'post':post})
-
-def latex_equation(request):
-	url=request.get_full_path()
-	url=urllib.request.unquote(url)
-	_r=re.findall(r"\?[\s\S]*",url) #匹配包括换行符
-	if _r:
-		equation_before=_r[0][1:] #去除?
-	else:
-		equation_before=""
-	equation_after=markdown("$$%s$$"%equation_before,extensions=['tables'])
-	contexts={'equation_after':equation_after,'equation_before':equation_before}
-	return render_to_response('child/latex.html',contexts)
-
 
 def leave_message(request):
 	return render_to_response('message.html',{})
