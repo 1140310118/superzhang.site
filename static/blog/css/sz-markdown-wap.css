@@ -1,0 +1,153 @@
+﻿body{
+  background-color: #FFF;
+  word-wrap:break-word;
+  /*font: normal 100% Helvetica, Arial, sans-serif;*/
+  font-family: "-apple-system","Open Sans","HelveticaNeue-Light","Helvetica Neue Light","Helvetica Neue",Helvetica,Arial,sans-serif;
+  color:#333;
+}
+
+/* 文字
+=============================================================================*/
+
+#post p,li{
+	/*font-family: Georgia,"Microsoft YaHei",SimSun,sans-serif;*/
+	/*font-size: 18px;*/
+  text-align: justify;
+  /*color: #444;*/
+	/*font-weight: 500;*/
+  line-height:1.5em;
+  letter-spacing:0.03em;
+}
+
+#post h2{
+	font-family: 等线;
+  border-bottom: 1px solid #ccc;
+	font-size: 1.9em;
+  line-height: 140%;
+  font-weight: 500!important;
+  margin: 0px!important; 
+  padding: 0px 0px 10px 0px;
+}
+
+#post h3{
+	font-size: 1.35em;
+  /*font-family: Georgia,"Microsoft YaHei","Times New Roman",serif;*/
+  font-weight: 700!important;
+  color:#444;
+  /*text-shadow:#f3f3f3 1px 1px 0px, #b2b2b2 1px 2px 0;*/
+}
+
+/* 代码
+=============================================================================*/
+
+
+#post code {
+	font-family:  Consolas, "Liberation Mono", Courier, monospace;
+}
+
+#post .hljs{
+    padding: 1em 0.6em;
+}
+
+#post pre {
+    overflow: auto;
+    border-radius: 0.3em; 
+}
+
+
+/* 表格
+=============================================================================*/
+
+#post table{
+	font-family:Georgia,"Microsoft YaHei",SimSun,sans-serif; 
+  font-size:80%;
+}
+
+#post table th {
+  font-weight: bold;
+}
+
+#post table th, table td {
+  border: 1px solid #ccc;
+  padding: 6px 13px;
+}
+
+#post table tr {
+  border-top: 1px solid #ccc;
+  background-color: #fff;
+}
+
+#post table tr:nth-child(2n) {
+  background-color: #f8f8f8;
+}
+
+/* 超链接
+=============================================================================*/
+
+#post a {
+  color: #4183C4 !important;
+  text-decoration: none;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: 75%;
+  white-space: nowrap;
+  display: inline-block;
+  margin-bottom: -0.4em;
+  margin-left: 0.1em; 
+  margin-right: 0.1em; 
+}
+
+#post a:link,#post a:visited{
+  color: #4183C4 !important;
+  text-decoration: none;
+}
+
+#post a:hover {
+  text-decoration: underline;
+}
+
+/* 引用
+=============================================================================*/
+
+#post blockquote {
+  border-left: 4px solid #DDD;
+  padding: 0px 0px 0px 15px;
+  margin-left: 0px;
+  margin-right: 0px;
+}
+
+#post blockquote p{
+  color: #666 !important;
+  text-align: justify;
+  margin-right: 0; 
+}
+
+#post blockquote>:first-child {
+  margin-top: 0px;
+}
+
+#post blockquote>:last-child {
+  margin-bottom: 0px;
+}
+
+
+/* 图片
+=============================================================================*/
+
+.figcaption{
+  text-align: center!important;
+  opacity: 0.6;
+  font-size: 1em!important;
+}
+img { 
+  max-width: 100%;
+  float:none!important;
+  width:100%!important;
+} 
+
+/* 公式
+=============================================================================*/
+
+.MathJax_Display{
+  max-width: 100%;
+}

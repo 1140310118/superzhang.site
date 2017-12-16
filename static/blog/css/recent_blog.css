@@ -1,0 +1,24 @@
+.blog_list ul{
+	list-style-type:circle;
+}
+
+.blog_list span{
+	color: #999;
+	font-family: Georgia, serif;
+}
+
+.blog_list a,a:visited{
+	text-decoration: none;
+	color: blue;
+	font-family: Georgia, serif;
+}
+
+.blog_list a:active{
+	text-decoration: blink;
+}
+
+.blog_list a:hover{
+	color:red;
+	text-decoration: underline;
+	cursor:hand;
+}

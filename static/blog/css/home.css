@@ -1,0 +1,79 @@
+﻿body{
+	margin: 0;
+	background-color: rgb(235,239,248);
+	font-family: "Segoe UI", verdana, arial, sans-serif, "微软雅黑", "宋体";
+	color:#333;
+}
+
+
+
+/*======================顶部===============*/
+
+.top{
+	background: rgb(235,239,248);
+	/*http://www.w3school.com.cn/cssref/pr_box-shadow.asp*/
+	box-shadow: 0 0 5px rgba(0,0,0,.5);
+	height: 70px;
+	text-align: center;
+}
+/*
+http://www.w3school.com.cn/cssref/pr_background.asp*/
+.logo_img{
+	background-image: url(img/logo.png);
+	background-position: 10% 5px;
+	background-size: auto 50px;
+	background-repeat:no-repeat;
+	height: 55px;
+}
+
+.statustelling{
+	/*position:absolute;
+  	left:50%;
+  	top:20;*/
+  	color: rgb(9,100,21);
+  	font-size: 24;
+  	margin:-40px auto;
+  	font-family: FangSong;
+}
+
+
+/*======================菜单===============*/
+.menu{
+	/*上 右 下 左*/
+	margin-top:    10px;
+	margin-bottom: 15px;
+	margin-right:  0px;
+	margin-left: calc(9% - 10px);
+	font-size: 88%;
+}
+
+/*https://www.w3cschool.cn/html5/question-10231595.html*/
+.menu a{
+	margin: 0 10px;
+	padding: 2px 0px;
+}
+
+.menu a:link,a:visited{
+	text-decoration: none;
+	color:black;
+}
+
+.menu a:active{
+	text-decoration: blink;
+}
+
+.menu a:hover{
+	text-decoration: none;
+	color:red;
+	background-color: #CCC;
+}
+
+/*==============中部图片===================*/
+.home_img{
+	background: url(img/home-img.jpg);
+	background-size: auto 100%;
+	background-repeat:no-repeat;
+	/*上 右 下 左*/
+	margin: 10px 9% 10px 9%;
+	height: 100%;
+}

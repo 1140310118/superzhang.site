@@ -1,0 +1,16 @@
+<head>
+<link rel="stylesheet" href="/static/blog/css/recent_blog.css" type="text/css">
+</head>
+
+<body>
+<div class="blog_list">
+<ul>
+	{% for post in blog_list %}
+	<li>
+		<span >{{post.timestamp}} »</span>  
+		<a herf="{{post.url}}">{{post.title}}</a>
+	</li>
+	{% endfor %}
+</ul>
+</div>
+</body>

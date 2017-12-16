@@ -1,0 +1,10 @@
+body{
+	margin: 0;
+	background-color: rgb(235,239,248);
+	font-family: "Segoe UI", verdana, arial, sans-serif, "微软雅黑", "宋体";
+	color:#333;
+}
+
+.main{
+    margin: 0;
+}

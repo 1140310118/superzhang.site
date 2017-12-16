@@ -1,0 +1,10 @@
+body{
+	margin: 0;
+	background-color: rgb(235,239,248);
+}
+
+.main{
+    margin: 0px 100px 0px 400px;
+	background-color: #fff;
+	padding: 20px;
+}

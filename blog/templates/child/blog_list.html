@@ -1,0 +1,37 @@
+<head>
+	
+<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+<link rel="stylesheet" href="/static/blog/css/blog_list.css" type="text/css">
+</head>
+
+<body>
+<div class="tags-and-blog_list">
+<div class="tags">
+	<p>标签</p>
+	<ul>
+	{% for t in tags%}
+		<li>
+			<a href="/blog_list/{{t.0}}">{{t.0}}</a>({{t.1}})
+		</li>
+	{% endfor %}
+	</ul>
+</div>
+<div class="blog_list">
+{% for year_posts in blog_by_year %}
+<p>{{year_posts.0}}年</p>
+<ul>
+	{% for post in year_posts.1 %}
+	<li>  
+		<a href="/blog/{{post.url}}" target="_top">{{post.title}}</a>
+		{% if from_mobile == "0" %}
+			<span >({{post.date}} · 标签:{{post.tag}} · <span id = "sourceId::{{post.url}}" class = "cy_cmt_count" ></span>评论)</span>
+			<script id="cy_cmt_num" src="https://changyan.sohu.com/upload/plugins/plugins.list.count.js?clientId=cytcdCKcT"></script>
+		{% endif %}
+	</li>
+	{% endfor %}
+</ul>
+{% endfor %}
+</div>
+</div>
+
+</body>

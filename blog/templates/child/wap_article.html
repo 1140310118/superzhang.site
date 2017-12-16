@@ -1,0 +1,44 @@
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1" /> 
+<!-- http://www.jianshu.com/p/2909aed83dad -->
+<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+<base target="_blank" /> 
+<link rel="stylesheet" href="/static/blog/css/sz-markdown-wap.css" type="text/css">
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+        inlineMath: [ ['$', '$'],['\\(',"\\)"]],
+        displayMath: [ ['$$', '$$']],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    messageStyle: "none",
+    "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+</head>
+
+
+<body>
+<div id="post">
+<h2 id="title">{{post.title}}</h2>
+{% autoescape off %}
+    {{post.body}}
+{% endautoescape %}
+</div>
+
+<script type="text/javascript">
+    $(":header").each(function(){
+        var name = $(this).text();
+        $(this).attr("id",name);
+        $(this).attr("name",name);
+    });
+</script>
+
+</body>
