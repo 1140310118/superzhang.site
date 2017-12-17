@@ -2,10 +2,91 @@
 <html>
 <head>
 	<title>阅读网页 - 添加注释</title>
+	<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
 </head>
 <body>
 
-<iframe src="https://www.ibm.com/developerworks/cn/web/1103_zhaoct_recommstudy1/index.html#icomments" width="1000" height="600"></iframe>
+<iframe src="{{paper.url}}" width="1000" height="300"></iframe>
+
+<style type="text/css">
+.a_note{
+	position: relative;
+	width: 200px;
+	height: 150px;
+	/*resize: both;*/
+}
+textarea{
+	font-size:14px;
+	font-family:微软雅黑;
+	width: 100%;
+	height: 100%;
+	line-height:18px;
+	position: relative;
+	background: rgb(255,242,181);
+	border-width: thin;
+	resize: both;
+	padding-top:20px;
+}
+
+.note_delete{
+	position: absolute;
+	right: -5px;
+	top: 0px;
+}
+.note_top{
+	width:100%;
+	height: 20px;
+	background: rgb(255,185,1); 
+}
+</style>
+
+<button id="add_note">添加笔记</button>
+<div id="note_area">
+	{% for note in notes%}
+		<div id='note_{{note.id}}' class='a_note'>
+			<div class="note_top">
+				<button class="note_delete">x</button>
+			</div>
+			<textarea class='note_text' >{{note.content}}</textarea>
+		</div>
+	{% endfor %}
+</div>
+
+<script type="text/javascript">
+	// 改变删除按钮的位置
+
+	// 添加笔记
+	$("#add_note").click(function(){
+		$.post("/_add_note/",{'paper_id': {{paper.id}}},function(note_id){
+			var note="<div id='note_"+note_id+"' class='a_note'><textarea class='note_text'></textarea><button class='note_delete'>x</button></div>";
+			$("#note_area").append(note);
+			// 添加修改和删除的事件
+			$('#note_'+note_id+' textarea').change(function(){
+				modify_note_by_id(note_id); });
+			$('#note_'+note_id+' button').click(function(){
+				delete_note_by_id(note_id); });
+		});
+	});
+	// 修改笔记
+	$('.note_text').change(function(){
+		note_id=$(this).parent().attr("id").substring(5);
+		modify_note_by_id(note_id);
+	});
+	// 删除笔记
+	$('.note_delete').click(function(){
+		note_id=$(this).parent().attr("id").substring(5);
+		delete_note_by_id(note_id);
+	});
+	// 待调用
+	function modify_note_by_id(note_id){
+		content=$("#note_"+note_id+" textarea").val();
+		$.post("/_modify_note/",{'note_id': note_id,'content': content});
+	}
+	function delete_note_by_id(note_id){
+		$("#note_"+note_id).hide();
+		$.post("/_delete_note/",{'note_id': note_id});
+	}
+</script>
 
 </body>
 </html>

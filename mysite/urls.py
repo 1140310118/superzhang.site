@@ -35,5 +35,8 @@ urlpatterns = [
     url(r'^latex$','latex.views.latex_equation'),
     #=================pnm========================
     url(r'^pnm$','pnm.views.home'),
-    url(r'^pnm/(?P<url>.*)/$','pnm.views.view'),
+    url(r'^pnm/(?P<paper_id>.*)/$','pnm.views.view'),
+    url(r'^_add_note/$','pnm.views.add_note'),
+    url(r'^_modify_note/$','pnm.views.modify_note'),
+    url(r'^_delete_note/$','pnm.views.delete_note'),
 ]
