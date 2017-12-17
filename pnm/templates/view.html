@@ -3,49 +3,62 @@
 <head>
 	<title>阅读网页 - 添加注释</title>
 	<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+	<script src="/static/pnm/js/resizeMe.js"></script>
+
 </head>
 <body>
 
 <iframe src="{{paper.url}}" width="1000" height="300"></iframe>
 
 <style type="text/css">
-.a_note{
-	position: relative;
+.resizeMe{
+	position: absolute;
 	width: 200px;
 	height: 150px;
-	/*resize: both;*/
-}
-textarea{
-	font-size:14px;
-	font-family:微软雅黑;
-	width: 100%;
-	height: 100%;
-	line-height:18px;
-	position: relative;
-	background: rgb(255,242,181);
 	border-width: thin;
-	resize: both;
-	padding-top:20px;
+	border-color: #000;
+	border-style: solid; 
+	background: rgb(255,242,181);
 }
 
 .note_delete{
 	position: absolute;
-	right: -5px;
+	right: 0px;
 	top: 0px;
 }
 .note_top{
-	width:100%;
+	margin-top:1px;
+	margin-left:0.5px;
+	position: relative;
+	z-index: 2;
+	width: calc(100% - 1px);
 	height: 20px;
 	background: rgb(255,185,1); 
+}
+.note_text{
+	position: relative;
+	z-index: 1;
+	margin: 2px; 
+	margin-top:-20px;
+	padding-top: 20px;
+	font-size:14px;
+	font-family:微软雅黑;
+	width: calc(100% - 9px);
+	height: calc(100% - 25px);
+	line-height:18px;
+	background: rgb(255,242,181);
+	border: none;
+	resize: none;
+	outline:none;
 }
 </style>
 
 <button id="add_note">添加笔记</button>
 <div id="note_area">
 	{% for note in notes%}
-		<div id='note_{{note.id}}' class='a_note'>
+		<div id='note_{{note.id}}' class='resizeMe'>
 			<div class="note_top">
-				<button class="note_delete">x</button>
+			<button class="note_delete">x</button>
 			</div>
 			<textarea class='note_text' >{{note.content}}</textarea>
 		</div>
@@ -53,12 +66,22 @@ textarea{
 </div>
 
 <script type="text/javascript">
-	// 改变删除按钮的位置
-
+	// focus效果
+	$(".note_text").focus(function(){
+		$(this).parent().css("outline","1px solid rgb(51,133,255)");
+	});
+	$(".note_text").blur(function(){
+		$(this).parent().css("outline","none");
+	});
 	// 添加笔记
 	$("#add_note").click(function(){
 		$.post("/_add_note/",{'paper_id': {{paper.id}}},function(note_id){
-			var note="<div id='note_"+note_id+"' class='a_note'><textarea class='note_text'></textarea><button class='note_delete'>x</button></div>";
+			var note="<div id='note_"+note_id+"' class='resizeMe'>\
+				<div class='note_top'>\
+				<button class='note_delete'>x</button>\
+				</div>\
+				<textarea class='note_text'></textarea>\
+				</div>";
 			$("#note_area").append(note);
 			// 添加修改和删除的事件
 			$('#note_'+note_id+' textarea').change(function(){
@@ -74,7 +97,7 @@ textarea{
 	});
 	// 删除笔记
 	$('.note_delete').click(function(){
-		note_id=$(this).parent().attr("id").substring(5);
+		note_id=$(this).parent().parent().attr("id").substring(5);
 		delete_note_by_id(note_id);
 	});
 	// 待调用
