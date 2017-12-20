@@ -46,7 +46,6 @@ function modify_note_by_id(note_id){
 }
 // 删除笔记
 function delete_note_by_id(note_id){
-	alert("删除");
 	$("#note_"+note_id).hide();
 	$.post("/_delete_note/",{'note_id': note_id});
 }

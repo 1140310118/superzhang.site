@@ -19,6 +19,7 @@
 	border-color: #000;
 	border-style: solid; 
 	background: rgb(255,242,181);
+	box-shadow: 0px 0px 10px #666;
 }
 
 .note_delete{
@@ -83,13 +84,13 @@
 	// 添加笔记
 	$("#add_note").click(function(){
 		$.post("/_add_note/",{'paper_id': {{paper.id}}},function(note_id){
-			var note="<div id='note_"+note_id+"' class='resizeMe'>\
+			var a_note="<div id='note_"+note_id+"' class='resizeMe'>\
 				<div class='note_top'>\
 				<button class='note_delete'>x</button>\
 				</div>\
 				<textarea class='note_text'></textarea>\
 				</div>";
-			$("#note_area").append(note);
+			$("#note_area").append(a_note);
 			// 为新note绑定事件
 			functions_for_new_note_to_bind(note_id);
 		});
