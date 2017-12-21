@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>阅读网页 - 添加注释</title>
+	<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+	<script src="/static/pnm/js/resizeMe.js"></script>
+	<script src="/static/pnm/js/note.js"></script>
+</head>
+<body>
+
+<iframe src="{{paper.url}}" width="1000" height="300"></iframe>
+
+<style type="text/css">
+.resizeMe{
+	position: absolute;
+	width: 200px;
+	height: 150px;
+	border-width: thin;
+	border-color: #000;
+	border-style: solid; 
+	background: rgb(255,242,181);
+	box-shadow: 0px 0px 10px #666;
+}
+
+.note_delete{
+	position: absolute;
+	right: 0px;
+	top: 0px;
+}
+.note_top{
+	margin-top:1px;
+	margin-left:0.5px;
+	position: relative;
+	z-index: 2;
+	width: calc(100% - 1px);
+	height: 25px;
+	background: rgb(255,185,1); 
+}
+.note_text{
+	position: relative;
+	z-index: 1;
+	margin: 2px; 
+	margin-top:-25px;
+	padding-top: 27px;
+	font-size:14px;
+	font-family:微软雅黑;
+	width: calc(100% - 9px);
+	height: calc(100% - 30px);
+	line-height:18px;
+	background: rgb(255,242,181);
+	border: none;
+	resize: none;
+	outline:none;
+}
+</style>
+
+<button id="add_note">添加笔记</button>
+<div id="note_area">
+	{% for note in notes%}
+		<div id='note_{{note.id}}' class='resizeMe'>
+			<div class="note_top">
+			<button class="note_delete">x</button>
+			</div>
+			<textarea class='note_text' >{{note.content}}</textarea>
+		</div>
+	{% endfor %}
+</div>
+
+<script type="text/javascript">
+	$('.note_text').change(function(){
+		note_id=$(this).parent().attr("id").substring(5);
+		modify_note_by_id(note_id); });
+	$('.note_delete').click(function(){
+		note_id=$(this).parent().parent().attr("id").substring(5);
+		delete_note_by_id(note_id); });
+	$('.note_top').mousedown(function(e){
+		note_top_mousedown(e,this); });
+	$(document).mouseup(function(){
+		note_top_mouseup(this); });
+	$(".note_text").focus(function(){
+		focus_outline(this); });
+	$(".note_text").blur(function(){
+		blur_outline(this); });
+	// 添加笔记
+	$("#add_note").click(function(){
+		$.post("/_add_note/",{'paper_id': {{paper.id}}},function(note_id){
+			var a_note="<div id='note_"+note_id+"' class='resizeMe'>\
+				<div class='note_top'>\
+				<button class='note_delete'>x</button>\
+				</div>\
+				<textarea class='note_text'></textarea>\
+				</div>";
+			$("#note_area").append(a_note);
+			// 为新note绑定事件
+			functions_for_new_note_to_bind(note_id);
+		});
+	});
+</script>
+
+</body>
+</html>

@@ -1,0 +1,82 @@
+<head>
+<!-- http://www.jianshu.com/p/2909aed83dad -->
+<link href="http://cdn.bootcss.com/highlight.js/8.0/styles/monokai_sublime.min.css" rel="stylesheet">
+<script src="http://cdn.bootcss.com/highlight.js/8.0/highlight.min.js"></script>
+<script >hljs.initHighlightingOnLoad();</script>
+<base target="_blank" />
+<link rel="stylesheet" href="/static/blog/css/sz-markdown.css" type="text/css">
+
+<script type="text/x-mathjax-config">
+MathJax.Hub.Config({
+    jax: ["input/TeX", "output/HTML-CSS"],
+    tex2jax: {
+        inlineMath: [ ['$', '$'],['\\(',"\\)"]],
+        displayMath: [ ['$$', '$$']],
+        processEscapes: true,
+        skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    messageStyle: "none",
+    "HTML-CSS": { preferredFont: "TeX", availableFonts: ["STIX","TeX"] }
+});
+</script>
+<script type="text/javascript" src="http://cdn.mathjax.org/mathjax/latest/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+<script src="http://lib.sinaapp.com/js/jquery/1.9.1/jquery-1.9.1.min.js"></script>
+</head>
+
+<style type="text/css">
+#post  p,li{
+    font-family: 华文宋体,宋体,sans-serif!important;
+    color:#000!important;
+    font-size:24px!important;
+}
+body {
+    background-color: #ffffff;
+}
+#post h3{
+    font-family: SimHei,"Microsoft YaHei"!important;
+    font-weight: 500!important;
+    font-size: 28!important;
+}
+#post h4{
+    font-family: Times,SimHei,"Microsoft YaHei"!important;
+    font-weight: 500!important;
+    font-size: 20px;
+}
+
+#post strong{
+    font-family: Times,SimHei,"Microsoft YaHei"!important;
+    font-weight: 500!important;
+}
+</style>
+
+<body>
+<div id="post">
+<h2 id="title">Latex公式解析</h2>
+参考：<a href="http://www.mohu.org/info/symbols/symbols.htm">常用数学符号的 LaTeX 表示方法</a>
+<p style="font-size: 18px!important">公式代码</p>
+<textarea id="latex_code" rows="7" cols="80" style="font-size:18;font-family: 华文宋体">
+{{equation_before}}</textarea>
+<br>
+<br>
+<div style="text-align:left;margin-left:600">
+<button onclick="goto()" style="font-family: 微软雅黑;font-size:18">解析</a></button>
+</div>
+<br>
+<br>
+<p style="font-size: 18px!important">解析后的公式</p>
+{% autoescape off %}
+    {{equation_after}}
+{% endautoescape %}
+</div>
+
+<script type="text/javascript">
+function goto(){
+    var latex_code=document.getElementById("latex_code").value;
+    var url="/latex?"+latex_code;
+    window.location.href=encodeURI(url);
+    // alert(url);
+}
+
+</script>
+
+</body>
