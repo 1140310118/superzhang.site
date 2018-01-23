@@ -27,9 +27,9 @@ def blog_article(request,url):
 	timestamp=post.timestamp
 	# https://segmentfault.com/q/1010000004606334
 	post.body=markdown(post.body,extensions=['tables'])
-	header_fixed=post.addition_control_msg[0]
-	font_style=post.addition_control_msg[1] # 0 是 微软雅黑，1 是华文宋体
-	from_mobile=checkMobile(request)
+	header_fixed=post.addition_control_msg[0] # 标题栏是否固定
+	font_style=post.addition_control_msg[1]   # 0 是 微软雅黑，1 是华文宋体
+	from_mobile=checkMobile(request)          # 请求是否来自手机端
 	dic={'url':url,'timestamp':timestamp,'post':post,
 			"header_fixed":header_fixed,
 			"font_style":font_style,
@@ -74,6 +74,8 @@ def ufldl(request,url="welcome-to-the-deep-learning-tutorial"):
 	from_mobile=checkMobile(request)
 	all_list=BlogsPost.objects.all()
 	blog_list=all_list.filter(tag='UFLDL',posted=True)
+	
+	blog_list=sorted(blog_list,key=lambda p:int(p.addition_control_msg[2:4]))
 	post=all_list.filter(url=url)[0]
 	post.body=markdown(post.body,extensions=['tables'])
 	dic={"blog_list":blog_list,'post':post,'timestamp':post.timestamp,"from_mobile":from_mobile}

@@ -31,6 +31,7 @@ urlpatterns = [
     url(r'^markdown/(?P<url>.*).md$','blog.views.get_markdown'),
     url(r'^print/(?P<url>.*)/$','blog.views.print'),
 
+
     #=================latex=======================
     url(r'^latex$','latex.views.latex_equation'),
     #=================pnm========================

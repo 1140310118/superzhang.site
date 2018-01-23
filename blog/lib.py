@@ -1,9 +1,9 @@
 import re
+from markdown import markdown
 
 def checkMobile(request):
-    # print (dir(request))
+    # 检查请求是否来自手机
     userAgent = request.META['HTTP_USER_AGENT']
-    # print("=======================",userAgent)
 
     _long_matches = r'googlebot-mobile|android|avantgo|blackberry|blazer|elaine|hiptop|ip(hone|od)|kindle|midp|mmp|mobile|o2|opera mini|palm( os)?|pda|plucker|pocket|psp|smartphone|symbian|treo|up\.(browser|link)|vodafone|wap|windows ce; (iemobile|ppc)|xiino|maemo|fennec'
     _long_matches = re.compile(_long_matches, re.IGNORECASE)
@@ -16,3 +16,17 @@ def checkMobile(request):
     if _short_matches.search(user_agent) != None:
         return '1'
     return '0'
+
+def markdown2(body):
+    print (body)
+    body=re.sub(r'\\',r'\\\\',body)
+    print (body)
+    return markdown(body,extensions=['tables'])
+
+if __name__=="__main__":
+    s="""#1
+##1
+$a_{1_1}\\$
+"""
+    html=markdown2(s)
+    print (html)
