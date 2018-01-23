@@ -3,3 +3,4 @@
 mysite/
 mysite/settings.py
 mysite/wsgi.py
+*.pyc
