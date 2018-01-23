@@ -1,4 +1,5 @@
 # setting
 
+mysite/
 mysite/settings.py
 mysite/wsgi.py
