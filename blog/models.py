@@ -17,6 +17,9 @@ class BlogsPost(models.Model):
 
 
 class BlogPostAdmin(admin.ModelAdmin):
-    list_display = ('title','timestamp')
+    list_display = ('title','tag','posted','timestamp')
+    # https://code.ziqiangxuetang.com/django/django-admin.html
+    search_fields= ('tag',)
+
 
 admin.site.register(BlogsPost,BlogPostAdmin)
