@@ -28,6 +28,7 @@
 }
 
 .headers{
+	font-weight: 500;
 	position: absolute;
 	left: 9%;
 	top: 120;
