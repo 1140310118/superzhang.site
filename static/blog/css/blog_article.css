@@ -28,7 +28,6 @@
 }
 
 .headers{
-	font-weight: 500;
 	position: absolute;
 	left: 9%;
 	top: 120;
@@ -49,6 +48,7 @@
 }
 
 .headers li{
+	font-weight: 500!impotant;
 	padding: 8 15 2 15;
 	text-align:left!important;
 	border-bottom:1px solid rgba(200,200,200,0.5);
