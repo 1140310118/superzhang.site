@@ -16,13 +16,18 @@
 }
 
 #post p,li{
-	font-family: Georgia,"Microsoft YaHei",SimSun,sans-serif;
+	font-family: "Microsoft YaHei",SimSun,sans-serif;
 	font-size: 18px;
   	text-align: justify;
-  	color: #000;
-	font-weight: 300;
-  	line-height:1.5em;
+  	font-weight: 300;
+  	line-height:1.6em;
   	letter-spacing:0.03em;
+}
+
+#post .MathJax{
+  font-size: 40%;
+  margin-left: 0.2em;
+  margin-right: 0.2em;
 }
 
 #post h2{
