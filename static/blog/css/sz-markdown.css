@@ -62,6 +62,7 @@
 
 #post code {
 	font-family:  Consolas, "Liberation Mono", Courier, monospace;
+  font-siz: 90%;
 }
 
 #post .hljs{
